@@ -1,7 +1,6 @@
 ﻿namespace ExpressionEvaluator.Core
 {
-    public class Class1
+    public class Evaluator
     {
-
     }
 }

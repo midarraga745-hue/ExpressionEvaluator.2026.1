@@ -1,1 +1,5 @@
-<Solution />
+<Solution>
+  <Project Path="ExpressionEvaluator.Core/ExpressionEvaluator.Core.csproj" />
+  <Project Path="ExpressionEvaluator.UI.Console/ExpressionEvaluator.UI.Console.csproj" />
+  <Project Path="ExpressionEvaluator.UI.Windows/ExpressionEvaluator.UI.Windows.csproj" />
+</Solution>
