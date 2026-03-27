@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExpressionEvaluator.Core\ExpressionEvaluator.Core.csproj" />
+  </ItemGroup>
+
 </Project>
