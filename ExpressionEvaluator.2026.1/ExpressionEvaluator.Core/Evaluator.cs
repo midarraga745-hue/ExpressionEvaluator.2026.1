@@ -1,4 +1,6 @@
-﻿namespace ExpressionEvaluator.Core;
+﻿using System.Globalization;
+
+namespace ExpressionEvaluator.Core;
 
 public class Evaluator
 {
@@ -28,7 +30,7 @@ public class Evaluator
                     number = "";
                 }
 
-                if (c != ' ')
+                if (c != ' ' && c != '.')
                     tokens.Enqueue(c.ToString());
             }
         }
@@ -94,7 +96,7 @@ public class Evaluator
         {
             if (!IsOperator(token))
             {
-                stack.Push(double.Parse(token));
+                stack.Push(double.Parse(token, CultureInfo.InvariantCulture));
             }
             else
             {

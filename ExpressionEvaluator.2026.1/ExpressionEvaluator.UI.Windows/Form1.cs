@@ -1,7 +1,6 @@
-﻿using System.Data;
+﻿using ExpressionEvaluator.Core;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using ExpressionEvaluator.Core;
 
 namespace ExpressionEvaluator.UI.Win;
 
@@ -126,28 +125,13 @@ public partial class Form1 : Form
         {
             string expresion = txtDisplay.Text;
 
-            // Multiplication (2)(3)
+            // Multiplicación implícita (2)(3)
             expresion = Regex.Replace(expresion, @"\)\(", ")*(");
 
-            // Power 2^3
-            while (Regex.IsMatch(expresion, @"(\d+(\.\d+)?)\^(\d+(\.\d+)?)"))
-            {
-                expresion = Regex.Replace(expresion,
-                    @"(\d+(\.\d+)?)\^(\d+(\.\d+)?)",
-                    m =>
-                    {
-                        double baseNum = double.Parse(m.Groups[1].Value, CultureInfo.InvariantCulture);
-                        double expNum = double.Parse(m.Groups[3].Value, CultureInfo.InvariantCulture);
-                        double res = Math.Pow(baseNum, expNum);
-                        return res.ToString(CultureInfo.InvariantCulture);
-                    });
-            }
-            expresion = Regex.Replace(expresion, @"(\d+)\^(\d+)", "Pow($1,$2)");
+            // ✅ Usar TU librería en lugar de DataTable
+            double resultado = Evaluator.Evaluate(expresion);
 
-            var result = new System.Data.DataTable().Compute(expresion, null);
-            double numero = Convert.ToDouble(result, CultureInfo.InvariantCulture);
-
-            txtDisplay.Text = numero.ToString("G", CultureInfo.InvariantCulture);
+            txtDisplay.Text = resultado.ToString("G", CultureInfo.InvariantCulture);
         }
         catch (Exception ex)
         {
