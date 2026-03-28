@@ -125,10 +125,9 @@ public partial class Form1 : Form
         {
             string expresion = txtDisplay.Text;
 
-            // Multiplicación implícita (2)(3)
+            // Multiplication
             expresion = Regex.Replace(expresion, @"\)\(", ")*(");
 
-            // ✅ Usar TU librería en lugar de DataTable
             double resultado = Evaluator.Evaluate(expresion);
 
             txtDisplay.Text = resultado.ToString("G", CultureInfo.InvariantCulture);
